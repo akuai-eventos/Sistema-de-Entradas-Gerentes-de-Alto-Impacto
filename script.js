@@ -20,7 +20,7 @@ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz7OyV5uOFJO34L9E74
 
 const PRECIO_ENTRADA_USD = 5;
 const MAX_ENTRADAS_POR_REGISTRO = 5;
-const TOTAL_INICIAL_ENTRADAS = 300;
+const TOTAL_INICIAL_ENTRADAS = 120;
 
 let TASA_BCV = 0;
 let ultimoStockEntradas = null;
@@ -311,8 +311,9 @@ function renderIntegrantesAdicionales(cantidadTotal) {
             <option value="Público General">Público General</option>
             <option value="Coordinador HELAV">Coordinador HELAV</option>
             <option value="Personal HELAV">Personal HELAV</option>
-            <option value="Otro">Otro</option>
             <option value="Patrocinante">Patrocinante</option>
+            <option value="Otro">Otro</option>
+
           </select>
         </div>
       </div>
@@ -513,8 +514,7 @@ function cerrarConfirm() {
 }
 
 async function enviarRegistro() {
-  console.log("CLICK EN ENVIAR REGISTRO");
-    if (!registroPendiente) {
+  if (!registroPendiente) {
     mostrarMensaje("No hay un registro pendiente.");
     return;
   }
@@ -544,26 +544,12 @@ async function enviarRegistro() {
     datos.append("capture_tipo", registroPendiente.capture_tipo);
     datos.append("capture_base64", registroPendiente.capture_base64);
 
-console.log("WEB_APP_URL:", WEB_APP_URL);
-console.log("Datos enviados:", Array.from(datos.entries()));
-
 const response = await fetch(WEB_APP_URL, {
-  method: "POST",
-  body: datos
-});
+      method: "POST",
+      body: datos
+    });
 
-console.log("Status respuesta:", response.status);
-console.log("URL final respuesta:", response.url);
-
-const textoRespuesta = await response.text();
-console.log("Respuesta Apps Script:", textoRespuesta);
-
-let data;
-try {
-  data = JSON.parse(textoRespuesta);
-} catch (err) {
-  throw new Error("Apps Script no devolvió JSON válido. Respuesta: " + textoRespuesta.slice(0, 250));
-}
+    const data = await response.json();
 
     if (!data.ok) {
       throw new Error(data.error || "No se pudo guardar el registro.");
