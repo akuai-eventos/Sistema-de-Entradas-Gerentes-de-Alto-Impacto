@@ -20,7 +20,7 @@ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz7OyV5uOFJO34L9E74
 
 const PRECIO_ENTRADA_USD = 5;
 const MAX_ENTRADAS_POR_REGISTRO = 5;
-const TOTAL_INICIAL_ENTRADAS = 120;
+const TOTAL_INICIAL_ENTRADAS = 130;
 
 let TASA_BCV = 0;
 let ultimoStockEntradas = null;
