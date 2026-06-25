@@ -227,3 +227,17 @@ footer { text-align:center; padding:40px 0; background:#fff; color:var(--muted);
   .section-divider::before,.section-divider::after { max-width:110px; }
   .section-divider .divider-icon { width:46px; }
 }
+
+/* ==========================================
+   🔴 INTERRUPTOR ON/OFF BARRA DISPONIBILIDAD 🔴
+   Para OCULTAR la barra: deja display: none;
+   Para MOSTRAR la barra: cambia a display: block;
+   ========================================== */
+
+.stock-progress-box {
+  display: none !important; /* 🔴 CAMBIA A "block" PARA MOSTRAR */
+}
+
+.entrada-disponible-inline {
+  display: none !important; /* 🔴 CAMBIA A "inline" PARA MOSTRAR */
+}
